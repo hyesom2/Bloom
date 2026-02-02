@@ -1,0 +1,21 @@
+@import '@/styles/reset.css';
+@import 'tailwindcss';
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary-color: #DC2B2E;
+    --secondary-color: #FFEBEC;
+  
+    --bg-color: #F8F8F8;
+    
+    --border-color: #7C7C7C;
+  }
+}
+
+@theme {
+  --color-primary: var(--primary-color);
+  --color-secondary: var(--secondary-color);
+
+  --color-border: var(--border-color);
+}
