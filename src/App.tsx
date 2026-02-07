@@ -3,8 +3,8 @@ import SideSection from '@components/SideSection';
 
 function App() {
   return (
-    <div className="flex">
-      <aside className="w-125 min-h-screen bg-primary">
+    <div className="flex flex-col lg:flex-row min-w-screen">
+      <aside className="w-full lg:w-1/4 min-h-screen bg-primary">
         <SideSection />
       </aside>
 
