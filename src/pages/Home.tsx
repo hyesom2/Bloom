@@ -1,5 +1,5 @@
-import Mandalart from '@components/Mandalart';
 import SideSection from '@components/SideSection';
+import Mandalart from '@components/mandalart/Mandalart';
 
 export default function Home() {
   return (
