@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Resolution() {
   const [savedResolution, setSavedResolution] = useState(() => {
@@ -8,6 +8,14 @@ export default function Resolution() {
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setSavedResolution(e.target.value);
   };
+
+  // 최초 로드 시 localStorage → state
+  // useEffect(() => {
+  //   const resolution = localStorage.getItem('resolution');
+  //   if (resolution) {
+  //     setSavedResolution(resolution);
+  //   }
+  // }, []);
 
   // textarea 수정될 때 마다 localStorage 동기화
   useEffect(() => {
@@ -32,7 +40,9 @@ export default function Resolution() {
         올해의 다짐
       </h1>
       <span className="w-full h-1 bg-primary" aria-label="hidden"></span>
-      <label htmlFor="resolution-textarea" className="sr-only">올해의 다짐 입력</label>
+      <label htmlFor="resolution-textarea" className="sr-only">
+        올해의 다짐 입력
+      </label>
       <textarea
         id="resolution-textarea"
         className="resize-none w-full h-30 border-none hover:outline hover:outline-primary focus:outline-primary"
@@ -41,5 +51,5 @@ export default function Resolution() {
         onChange={handleTextareaChange}
       />
     </section>
-  )
+  );
 }

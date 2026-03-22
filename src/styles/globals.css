@@ -3,12 +3,12 @@
 
 @layer base {
   :root {
-    --primary-color: #DC2B2E;
-    --secondary-color: #FFEBEC;
-  
-    --bg-color: #F8F8F8;
-    
-    --border-color: #7C7C7C;
+    --primary-color: #dc2b2e;
+    --secondary-color: #ffebec;
+
+    --bg-color: #f8f8f8;
+
+    --border-color: #7c7c7c;
   }
 }
 
@@ -17,4 +17,10 @@
   --color-secondary: var(--secondary-color);
 
   --color-border: var(--border-color);
+}
+
+.empty-placeholder:empty::before {
+  content: attr(data-placeholder);
+  color: gray;
+  pointer-events: none;
 }
