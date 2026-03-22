@@ -1,18 +1,5 @@
-import Mandalart from '@components/Mandalart';
-import SideSection from '@components/SideSection';
+import Home from '@pages/Home'
 
-function App() {
-  return (
-    <div className="flex flex-col lg:flex-row min-w-screen">
-      <aside className="w-full lg:w-1/4 min-h-screen bg-primary">
-        <SideSection />
-      </aside>
-
-      <main className="w-full min-h-screen grow bg-gray-50 flex items-center justify-center">
-        <Mandalart />
-      </main>
-    </div>
-  );
+export default function App() {
+  return <Home />
 }
-
-export default App;
