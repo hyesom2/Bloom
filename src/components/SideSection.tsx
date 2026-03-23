@@ -1,5 +1,5 @@
-import Resolution from '@components/Resolution';
 import HorseImage from '@assets/images/horse.webp';
+import Resolution from '@components/Resolution';
 
 export default function SideSection() {
   return (
@@ -7,10 +7,10 @@ export default function SideSection() {
       <h1 className="text-9xl font-bold text-white">2026</h1>
       <img
         src={HorseImage}
-        alt=""
+        alt="붉은말의 해"
         className="block w-full h-full md:w-150 md:h-150 lg:w-full lg:h-full object-contain"
       />
       <Resolution />
     </div>
-  )
+  );
 }

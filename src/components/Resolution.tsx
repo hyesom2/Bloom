@@ -9,23 +9,18 @@ export default function Resolution() {
     setSavedResolution(e.target.value);
   };
 
-  // 최초 로드 시 localStorage → state
-  // useEffect(() => {
-  //   const resolution = localStorage.getItem('resolution');
-  //   if (resolution) {
-  //     setSavedResolution(resolution);
-  //   }
-  // }, []);
-
-  // textarea 수정될 때 마다 localStorage 동기화
   useEffect(() => {
     const value = savedResolution;
 
-    if (value === '') {
-      localStorage.removeItem('resolution');
-    } else {
-      localStorage.setItem('resolution', value);
-    }
+    const handler = setTimeout(() => {
+      if (value === '') {
+        localStorage.removeItem('resolution');
+      } else {
+        localStorage.setItem('resolution', value);
+      }
+    }, 500);
+
+    return () => clearTimeout(handler);
   }, [savedResolution]);
 
   return (
@@ -33,13 +28,15 @@ export default function Resolution() {
       className="flex flex-col grow-0 justify-start items-start gap-3.5 w-full border-none bg-white rounded-2xl p-6"
       aria-labelledby="resolution-title"
     >
-      <h1
+      <h2
         id="resolution-title"
         className="w-full text-[32px] md:text-[60px] lg:text-[40px] text-primary font-bold text-center lg:text-left"
       >
         올해의 다짐
-      </h1>
-      <span className="w-full h-1 bg-primary" aria-label="hidden"></span>
+      </h2>
+
+      <span className="w-full h-1 bg-primary" aria-hidden="true"></span>
+
       <label htmlFor="resolution-textarea" className="sr-only">
         올해의 다짐 입력
       </label>
