@@ -1,6 +1,8 @@
+import { useColorStore } from '@/store/useColorStore';
 import { useEffect, useState } from 'react';
 
 export default function Resolution() {
+  const color = useColorStore((state) => state.color);
   const [savedResolution, setSavedResolution] = useState(() => {
     return localStorage.getItem('resolution') || '';
   });
@@ -30,12 +32,13 @@ export default function Resolution() {
     >
       <h2
         id="resolution-title"
-        className="w-full text-[32px] md:text-[60px] lg:text-[40px] text-primary font-bold text-center lg:text-left"
+        className="w-full text-[32px] md:text-[60px] lg:text-[40px] font-bold text-center lg:text-left whitespace-nowrap"
+        style={{ color: color }}
       >
-        올해의 다짐
+        올해의 다짐🔥
       </h2>
 
-      <span className="w-full h-1 bg-primary" aria-hidden="true"></span>
+      <span className="w-full h-1" style={{ backgroundColor: color }} aria-hidden="true"></span>
 
       <label htmlFor="resolution-textarea" className="sr-only">
         올해의 다짐 입력
