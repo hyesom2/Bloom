@@ -16,4 +16,5 @@ export interface CellProps {
   placeholder?: string;
   isMainCenter?: boolean;
   isCenter?: boolean;
+  onClick?: () => void;
 }

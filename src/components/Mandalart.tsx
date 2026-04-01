@@ -1,10 +1,11 @@
 import MandalartGrid from './MandalartGrid';
 import { useCoreGoal } from '@hooks/useCoreGoal';
 import { useGoal } from '@hooks/useGoal';
-import { useUserName } from '@hooks/useUserName';
+
+// import { useUserName } from '@hooks/useUserName';
 
 export default function Mandalart() {
-  const { name, setName } = useUserName();
+  // const { name, setName } = useUserName();
   const { coreGoal, setCoreGoal } = useCoreGoal();
 
   const g0 = useGoal(0);
@@ -18,15 +19,7 @@ export default function Mandalart() {
   const goals = [g0, g1, g2, g3, g4, g5, g6, g7];
 
   return (
-    <section className="flex flex-col items-center gap-6 min-h-screen bg-gray-50">
-      <h1>
-        <label htmlFor="name" className="sr-only">
-          사용자 이름 입력
-        </label>
-        <input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="사용자 이름" />
-        <span>의 목표 설정</span>
-      </h1>
-
+    <section className="flex flex-col justify-center items-center gap-6 min-h-screen bg-gray-50">
       <MandalartGrid coreGoal={coreGoal} setCoreGoal={setCoreGoal} goals={goals} />
     </section>
   );
