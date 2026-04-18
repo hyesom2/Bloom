@@ -6,11 +6,12 @@ import jsPDF from 'jspdf';
 import { useRef } from 'react';
 
 export default function Home() {
-  const exportRef = useRef();
+  const exportRef = useRef<HTMLDivElement | null>(null);
   const color = useColorStore((state) => state.color);
 
   const exportPNG = async () => {
     const node = exportRef.current;
+    if (!node) return;
 
     const dataUrl = await htmlToImage.toPng(node, {
       cacheBust: true
@@ -24,6 +25,7 @@ export default function Home() {
 
   const exportJPG = async () => {
     const node = exportRef.current;
+    if (!node) return;
 
     const dataUrl = await htmlToImage.toJpeg(node, {
       quality: 0.95
@@ -37,6 +39,7 @@ export default function Home() {
 
   const exportPDF = async () => {
     const node = exportRef.current;
+    if (!node) return;
 
     const dataUrl = await htmlToImage.toPng(node);
 
@@ -46,7 +49,7 @@ export default function Home() {
     img.onload = () => {
       const pdf = new jsPDF('p', 'mm', 'a4');
 
-      const imgWidth = 210; // A4 width
+      const imgWidth = 210;
       const imgHeight = (img.height * imgWidth) / img.width;
 
       pdf.addImage(dataUrl, 'PNG', 0, 0, imgWidth, imgHeight);
