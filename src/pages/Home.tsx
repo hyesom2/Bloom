@@ -61,30 +61,9 @@ export default function Home() {
   const mainLayout = `w-full min-h-screen grow bg-gray-50 flex items-center justify-center`;
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen overflow-hidden" ref={exportRef}>
+    <div className="flex flex-col lg:flex-row min-h-screen" ref={exportRef}>
       <aside style={{ backgroundColor: color }} className={sideLayout} aria-label="올해의 다짐 구역">
-        <button
-          type="button"
-          className="bg-white text-md text-black font-bold p-2 rounded-lg cursor-pointer hover:bg-gray-50 transition"
-          onClick={() => exportPNG()}
-        >
-          PNG export
-        </button>
-        <button
-          type="button"
-          className="bg-white text-md text-black font-bold p-2 rounded-lg cursor-pointer hover:bg-gray-50 transition"
-          onClick={() => exportJPG()}
-        >
-          JPG export
-        </button>
-        <button
-          type="button"
-          className="bg-white text-md text-black font-bold p-2 rounded-lg cursor-pointer hover:bg-gray-50 transition"
-          onClick={() => exportPDF()}
-        >
-          PDF export
-        </button>
-        <SideSection />
+        <SideSection exportPNG={exportPNG} exportJPG={exportJPG} exportPDF={exportPDF} />
       </aside>
 
       <main className={mainLayout}>

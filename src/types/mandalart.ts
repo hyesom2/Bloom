@@ -18,3 +18,9 @@ export interface CellProps {
   isCenter?: boolean;
   onClick?: () => void;
 }
+
+export interface MenuProps {
+  exportPNG: () => void;
+  exportJPG: () => void;
+  exportPDF: () => void;
+}
