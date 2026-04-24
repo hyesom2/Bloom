@@ -11,7 +11,13 @@ export default function SideSection({ exportPNG, exportJPG, exportPDF }: MenuPro
   return (
     <div className="relative flex flex-col justify-between items-center lg:flex-col min-h-screen px-6 py-8 md:px-12 md:py-16 lg:px-6 lg:py-8">
       <div className="absolute top-4 left-4 z-50">
-        <div className="cursor-pointer inline-block" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <div
+          className="cursor-pointer inline-block"
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsMenuOpen(!isMenuOpen);
+          }}
+        >
           <span className="inline-block hover:rotate-90 transition-transform">
             <Settings size={24} color="black" strokeWidth={2} />
           </span>
