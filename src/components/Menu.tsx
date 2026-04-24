@@ -1,25 +1,46 @@
 import { useColorStore } from '@/store/useColorStore';
+import { useMenuStore } from '@/store/useMenuStore';
 import type { MenuProps } from '@/types/mandalart';
 import { FileDown, ImageDown, Palette } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 
 export default function Menu({ exportPNG, exportJPG, exportPDF }: MenuProps) {
-  const { color, setColor } = useColorStore();
+  const menuRef = useRef<HTMLUListElement>(null);
   const [showColorPicker, setShowColorPicker] = useState(false);
+  const { color, setColor } = useColorStore();
+  const { setIsMenuOpen } = useMenuStore();
 
   const handleExportJPG = () => {
     exportJPG();
+    setIsMenuOpen(false);
   };
   const handleExportPNG = () => {
     exportPNG();
+    setIsMenuOpen(false);
   };
   const handleExportPDF = () => {
     exportPDF();
+    setIsMenuOpen(false);
   };
+
+  useEffect(() => {
+    if (!menuRef.current) return;
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setIsMenuOpen(false);
+        setShowColorPicker(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [setIsMenuOpen]);
 
   return (
     <ul
+      ref={menuRef}
       role="menu"
       className="absolute top-full left-0 w-55 flex flex-col justify-start items-start gap-2 bg-white p-2 rounded-lg"
       aria-label="설정 메뉴"
