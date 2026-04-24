@@ -8,6 +8,16 @@ export default function Menu({ exportPNG, exportJPG, exportPDF }: MenuProps) {
   const { color, setColor } = useColorStore();
   const [showColorPicker, setShowColorPicker] = useState(false);
 
+  const handleExportJPG = () => {
+    exportJPG();
+  };
+  const handleExportPNG = () => {
+    exportPNG();
+  };
+  const handleExportPDF = () => {
+    exportPDF();
+  };
+
   return (
     <ul className="absolute top-full left-0 w-55 flex flex-col justify-start items-start gap-2 bg-white p-2 rounded-lg">
       <li
@@ -26,7 +36,7 @@ export default function Menu({ exportPNG, exportJPG, exportPDF }: MenuProps) {
       )}
       <li
         className="flex justify-start w-full items-center text-md text-black font-bold p-2 cursor-pointer hover:bg-gray-50 transition"
-        onClick={exportJPG}
+        onClick={handleExportJPG}
       >
         <span className="flex justify-start items-center gap-1">
           <ImageDown />
@@ -35,7 +45,7 @@ export default function Menu({ exportPNG, exportJPG, exportPDF }: MenuProps) {
       </li>
       <li
         className="flex justify-start w-full items-center text-md text-black font-bold p-2 cursor-pointer hover:bg-gray-50 transition"
-        onClick={exportPNG}
+        onClick={handleExportPNG}
       >
         <span className="flex justify-start items-center gap-1">
           <ImageDown />
@@ -44,7 +54,7 @@ export default function Menu({ exportPNG, exportJPG, exportPDF }: MenuProps) {
       </li>
       <li
         className="flex justify-start w-full items-center text-md text-black font-bold p-2 cursor-pointer hover:bg-gray-50 transition"
-        onClick={exportPDF}
+        onClick={handleExportPDF}
       >
         <span className="flex justify-start items-center gap-1">
           <FileDown />
