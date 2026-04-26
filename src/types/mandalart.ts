@@ -23,4 +23,5 @@ export interface MenuProps {
   exportPNG: () => void;
   exportJPG: () => void;
   exportPDF: () => void;
+  buttonRef: React.RefObject<HTMLDivElement>;
 }
