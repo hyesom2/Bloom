@@ -25,3 +25,9 @@ export interface MenuProps {
   exportPDF: () => void;
   buttonRef: React.RefObject<HTMLDivElement | null>;
 }
+
+export interface SideSectionProps {
+  exportPNG: () => void;
+  exportJPG: () => void;
+  exportPDF: () => void;
+}
