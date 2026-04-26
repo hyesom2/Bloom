@@ -1,12 +1,12 @@
 import { useMenuStore } from '@/store/useMenuStore';
-import type { MenuProps } from '@/types/mandalart';
+import type { SideSectionProps } from '@/types/mandalart';
 import HorseImage from '@assets/images/horse.webp';
 import Menu from '@components/Menu';
 import Resolution from '@components/Resolution';
 import { Settings } from 'lucide-react';
 import { useRef } from 'react';
 
-export default function SideSection({ exportPNG, exportJPG, exportPDF }: MenuProps) {
+export default function SideSection({ exportPNG, exportJPG, exportPDF }: SideSectionProps) {
   const buttonRef = useRef<HTMLDivElement>(null);
   const { isMenuOpen, setIsMenuOpen } = useMenuStore();
 
