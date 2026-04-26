@@ -5,7 +5,7 @@ import { FileDown, ImageDown, Palette } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 
-export default function Menu({ exportPNG, exportJPG, exportPDF }: MenuProps) {
+export default function Menu({ exportPNG, exportJPG, exportPDF, buttonRef }: MenuProps) {
   const menuRef = useRef<HTMLUListElement>(null);
   const [showColorPicker, setShowColorPicker] = useState(false);
   const { color, setColor } = useColorStore();
@@ -28,6 +28,8 @@ export default function Menu({ exportPNG, exportJPG, exportPDF }: MenuProps) {
     if (!menuRef.current) return;
 
     const handleClickOutside = (e: MouseEvent) => {
+      if (buttonRef.current?.contains(e.target as Node)) return;
+
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
         setIsMenuOpen(false);
         setShowColorPicker(false);
@@ -36,7 +38,7 @@ export default function Menu({ exportPNG, exportJPG, exportPDF }: MenuProps) {
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [setIsMenuOpen]);
+  }, [setIsMenuOpen, buttonRef]);
 
   return (
     <ul
