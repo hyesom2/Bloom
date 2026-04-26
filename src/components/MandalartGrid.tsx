@@ -12,6 +12,7 @@ interface MandalartGridProps {
 export default function MandalartGrid({ coreGoal, setCoreGoal, goals }: MandalartGridProps) {
   const getIndex = (i: number) => (i < 4 ? i : i - 1);
   const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
+  const [selectedGoalIndex, setSelectedGoalIndex] = useState<number | null>(null);
 
   return (
     <>
@@ -56,18 +57,12 @@ export default function MandalartGrid({ coreGoal, setCoreGoal, goals }: Mandalar
                     isMainCenter={isMainGrid}
                     isCenter={isCenter}
                     placeholder={placeholder}
-                    // onClick={() => {
-                    //   if (isMainGrid && !isCenter) {
-                    //     if (value) {
-                    //       console.log(`${value}모달 열기`);
-                    //     } else {
-                    //       console.log(`${cellIndex}모달 열기`);
-                    //     }
-                    //   }
-                    // }}
                     onClick={() => {
                       if (isMainGrid && !isCenter) {
+                        const goalIndex = getIndex(cellIndex);
+
                         setSelectedGoal(value);
+                        setSelectedGoalIndex(goalIndex);
                       }
                     }}
                   />
@@ -77,7 +72,7 @@ export default function MandalartGrid({ coreGoal, setCoreGoal, goals }: Mandalar
           );
         })}
       </div>
-      {selectedGoal && <Detail value={selectedGoal} onClose={() => setSelectedGoal(null)} />}
+      {selectedGoal && <Detail goal={goals[selectedGoalIndex!]} onClose={() => setSelectedGoal(null)} />}
     </>
   );
 }
