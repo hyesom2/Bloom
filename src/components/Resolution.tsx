@@ -6,6 +6,9 @@ export default function Resolution() {
   const [savedResolution, setSavedResolution] = useState(() => {
     return localStorage.getItem('resolution') || '';
   });
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const showOutline = isHovered || isFocused;
 
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setSavedResolution(e.target.value);
@@ -45,10 +48,15 @@ export default function Resolution() {
       </label>
       <textarea
         id="resolution-textarea"
-        className="resize-none w-full h-30 border-none hover:outline hover:outline-primary focus:outline-primary"
+        className={`resize-none w-full h-30 border-none outline-none rounded-lg`}
         placeholder="올해의 다짐을 작성해보세요."
         value={savedResolution}
         onChange={handleTextareaChange}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        style={showOutline ? { outline: `2px solid ${color}` } : undefined}
       />
     </section>
   );
