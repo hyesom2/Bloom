@@ -1,31 +1,34 @@
-import { useColorStore } from '@/store/useColorStore';
+import { useMenuStore } from '@/store/useMenuStore';
+import type { SideSectionProps } from '@/types/mandalart';
 import HorseImage from '@assets/images/horse.webp';
+import Menu from '@components/Menu';
 import Resolution from '@components/Resolution';
-import { useState } from 'react';
-import { HexColorPicker } from 'react-colorful';
+import { Settings } from 'lucide-react';
+import { useRef } from 'react';
 
-export default function SideSection() {
-  const { color, setColor } = useColorStore();
-  const [showColorPicker, setShowColorPicker] = useState(false);
+export default function SideSection({ exportPNG, exportJPG, exportPDF }: SideSectionProps) {
+  const buttonRef = useRef<HTMLDivElement>(null);
+  const { isMenuOpen, setIsMenuOpen } = useMenuStore();
+
+  const handleToggleMenu = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
-    <div className="flex flex-col justify-between items-center lg:flex-col min-h-screen px-6 py-8 md:px-12 md:py-16 lg:px-6 lg:py-8">
+    <div className="relative flex flex-col justify-between items-center lg:flex-col min-h-screen px-6 py-8 md:px-12 md:py-16 lg:px-6 lg:py-8">
+      <div className="absolute top-4 left-4 z-50">
+        <div ref={buttonRef} className="cursor-pointer inline-block" onClick={handleToggleMenu}>
+          <span className="inline-block hover:rotate-90 transition-transform">
+            <Settings size={24} color="black" strokeWidth={2} />
+          </span>
+        </div>
+        {isMenuOpen && <Menu exportPNG={exportPNG} exportJPG={exportJPG} exportPDF={exportPDF} buttonRef={buttonRef} />}
+      </div>
       <h1 className="flex flex-col justify-center items-center gap-2 font-bold text-white">
         <span className="text-9xl">2026</span>
         <span className="text-4xl">만다라트 계획표</span>
       </h1>
-      <button
-        type="button"
-        className="bg-white text-md text-black font-bold p-2 rounded-lg cursor-pointer hover:bg-gray-50 transition"
-        onClick={() => setShowColorPicker(!showColorPicker)}
-      >
-        색상 변경
-      </button>
-      {showColorPicker && (
-        <div className="absolute z-10">
-          <HexColorPicker color={color} onChange={setColor} />
-        </div>
-      )}
       <img
         src={HorseImage}
         alt="붉은말의 해"

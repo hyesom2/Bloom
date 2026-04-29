@@ -6,7 +6,7 @@ const Cell = memo(({ value, onUpdate, index, isMainCenter, isCenter, placeholder
   const ref = useRef<HTMLDivElement>(null);
   const { color, subColor } = useColorStore();
 
-  const baseStyle = `flex justify-center items-center w-25 h-25 overflow-hidden text-center text-sm border border-border outline-none empty-placeholder transition-colors`;
+  const baseStyle = `relative flex justify-center items-center w-25 h-25 overflow-hidden text-center text-sm border border-border outline-none empty-placeholder transition-colors`;
   let bgStyle = `bg-white text-black`;
 
   if (isMainCenter) {

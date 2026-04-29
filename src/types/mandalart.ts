@@ -18,3 +18,16 @@ export interface CellProps {
   isCenter?: boolean;
   onClick?: () => void;
 }
+
+export interface MenuProps {
+  exportPNG: () => void;
+  exportJPG: () => void;
+  exportPDF: () => void;
+  buttonRef: React.RefObject<HTMLDivElement | null>;
+}
+
+export interface SideSectionProps {
+  exportPNG: () => void;
+  exportJPG: () => void;
+  exportPDF: () => void;
+}
