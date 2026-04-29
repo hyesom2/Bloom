@@ -57,7 +57,7 @@ export default function Menu({ exportPNG, exportJPG, exportPDF }: MenuProps) {
         </button>
       </li>
       {showColorPicker && (
-        <div className="absolute top-0 left-full ml-2 sz-9999">
+        <div className="absolute top-full left-0 md:top-0 md:left-full mt-2 md:ml-2 sz-9999">
           <HexColorPicker color={color} onChange={setColor} />
         </div>
       )}
