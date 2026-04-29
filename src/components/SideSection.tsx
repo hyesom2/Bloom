@@ -1,28 +1,29 @@
 import { useMenuStore } from '@/store/useMenuStore';
-import type { MenuProps } from '@/types/mandalart';
+import type { SideSectionProps } from '@/types/mandalart';
 import HorseImage from '@assets/images/horse.webp';
 import Menu from '@components/Menu';
 import Resolution from '@components/Resolution';
 import { Settings } from 'lucide-react';
+import { useRef } from 'react';
 
-export default function SideSection({ exportPNG, exportJPG, exportPDF }: MenuProps) {
+export default function SideSection({ exportPNG, exportJPG, exportPDF }: SideSectionProps) {
+  const buttonRef = useRef<HTMLDivElement>(null);
   const { isMenuOpen, setIsMenuOpen } = useMenuStore();
+
+  const handleToggleMenu = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <div className="relative flex flex-col justify-between items-center lg:flex-col min-h-screen px-6 py-8 md:px-12 md:py-16 lg:px-6 lg:py-8">
-      <div className="fixed top-4 left-4 z-50">
-        <div
-          className="cursor-pointer inline-block"
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsMenuOpen(!isMenuOpen);
-          }}
-        >
+      <div className="absolute top-4 left-4 z-50">
+        <div ref={buttonRef} className="cursor-pointer inline-block" onClick={handleToggleMenu}>
           <span className="inline-block hover:rotate-90 transition-transform">
             <Settings size={24} color="black" strokeWidth={2} />
           </span>
         </div>
-        {isMenuOpen && <Menu exportPNG={exportPNG} exportJPG={exportJPG} exportPDF={exportPDF} />}
+        {isMenuOpen && <Menu exportPNG={exportPNG} exportJPG={exportJPG} exportPDF={exportPDF} buttonRef={buttonRef} />}
       </div>
       <h1 className="flex flex-col justify-center items-center gap-2 font-bold text-white">
         <span className="text-9xl">2026</span>
